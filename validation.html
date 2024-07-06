@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form Validation</title>
+</head>
+<body>
+
+<h1>HTML Form Validation</h1>
+<h2>Student Profile</h2>
+
+<table width="500" border="0">
+    <tr> 
+        <td width="150"><strong>Password</strong></td>
+        <td><input type="password" id="password" name="password1" size="20" maxlength="20" /></td>
+    </tr>
+    <tr> 
+        <td><strong>Confirm</strong></td>
+        <td><input type="password" id="confirmPassword" name="password2" size="20" maxlength="20" /></td>
+    </tr>
+    <tr> 
+        <td><strong>Check</strong></td>
+        <td><input type="checkbox" id="agree" name="agree" value="Yes" /> Yes, I agree</td>
+    </tr>
+</table>
+
+<p>
+    <input type="button" value="Process" onclick="ProcessForm()" />
+</p>
+
+<div id="errorMessages"></div>
+
+<script type="text/javascript">
+    function ProcessForm() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const agree = document.getElementById('agree').checked;
+        let errors = [];
+
+        if (!password || !confirmPassword) {
+            errors.push("Password and confirm values are required.");
+        }
+
+        if (password !== confirmPassword) {
+            errors.push("Password and confirm values should be the same.");
+        }
+
+        if (!agree) {
+            errors.push("You must agree to the terms.");
+        }
+
+        const errorMessages = document.getElementById('errorMessages');
+        errorMessages.innerHTML = errors.join('<br>');
+
+        if (errors.length === 0) {
+            alert("Form submitted successfully!");
+        }
+    }
+</script>
+
+</body>
+</html>
